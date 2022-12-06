@@ -1,7 +1,7 @@
 # Wafer Insights - Inference
 
 ## Overview
-Wafer Insights is a python application that allows users to predict FMAX/IDV tokens based on multiple data sources measured in the fab. For detailed information about the workflow, go to [Wafer Insights](htts://github.com/intel/wafer-insights) GitHub repository.
+Wafer Insights is a python application that allows users to predict FMAX/IDV tokens based on multiple data sources measured in the fab. For detailed information about the workflow, go to [Wafer Insights](https://github.com/intel/wafer-insights-with-classical-ml) GitHub repository.
 
 ## How it Works
 Wafer Insights is an interactive data-visualization web application based on Dash and Plotly. It includes 2 major components: a data loader which generates synthetic fab data for visualization, and a dash app that provides an interface for users to play around with the data and gain insights into the data. Dash is written on top of Plotly.js and React.js and is an ideal framework for building and deploying data apps with customized user interfaces. The  `src/dashboard` folder contains the code for the dash app and the `src/loaders` folder contains the code for the data loader.
