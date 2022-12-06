@@ -53,11 +53,11 @@ docker pull intel/ai-workflows:document-level-sentiment-analysis
 
 (Optional) Export related proxy into docker environment.
 ```
-export DOCKER_RUN_ENVS="-e ftp_proxy=${ftp_proxy} \ 
-  -e FTP_PROXY=${FTP_PROXY} -e http_proxy=${http_proxy} \ 
-  -e HTTP_PROXY=${HTTP_PROXY} -e https_proxy=${https_proxy} \ 
-  -e HTTPS_PROXY=${HTTPS_PROXY} -e no_proxy=${no_proxy} \ 
-  -e NO_PROXY=${NO_PROXY} -e socks_proxy=${socks_proxy} \ 
+export DOCKER_RUN_ENVS="-e ftp_proxy=${ftp_proxy} \
+  -e FTP_PROXY=${FTP_PROXY} -e http_proxy=${http_proxy} \
+  -e HTTP_PROXY=${HTTP_PROXY} -e https_proxy=${https_proxy} \
+  -e HTTPS_PROXY=${HTTPS_PROXY} -e no_proxy=${no_proxy} \
+  -e NO_PROXY=${NO_PROXY} -e socks_proxy=${socks_proxy} \
   -e SOCKS_PROXY=${SOCKS_PROXY}"
 ```
 Run different fine-tuning pipeline by replacing "Bash Command" according to the pipeline.
@@ -76,18 +76,13 @@ docker run -a stdout $DOCKER_RUN_ENVS \
   --env ${OUTPUT_DIR}:${OUTPUT_DIR}/fine_tuned \
   --volume ${OUTPUT_DIR}:${OUTPUT_DIR} \
   --volume ${PWD}:/workspace \
-  --workdir /workspace/profiling-transformers \
+  --workdir /workspace \
   --privileged --init -it \
   intel/ai-workflows:document-level-sentiment-analysis \
   fine-tuning/run_dist.sh -np 1 -ppn 1 fine-tuning/run_ipex_native.sh
 ```
 
-##### Fine-Tuning Pipeline
 
-|  Implementations                               | Model    | Instance | API         | Framework       | Precision  |
-| ---------------------------------- | -------- | -------- | ----------- | ----------------------- | ---------- |
-| [Run with IPEX (Single Instance)](https://github.com/intel/document-level-sentiment-analysis/blob/main/docs/fine-tuning/single-node-ipex.md) | HF Model  | Single   | Non-trainer | PyTorch + IPEX          | FP32,BF16  |
-| [Run with IPEX (Multi Instance)](https://github.com/intel/document-level-sentiment-analysis/blob/main/docs/fine-tuning/multi-nodes-ipex.md) | HF Model  | Multiple | Non-trainer | PyTorch + IPEX          | FP32,BF16  |
 
 ### **Bare Metal**
 Below setup and how-to-run sessions are for users who want to use bare metal environment.  
@@ -101,14 +96,13 @@ sh install.sh
 #### How to run 
 
 ##### Fine-Tuning Pipeline
-
-
 |  Implementations                               | Model    | Instance | API         | Framework       | Precision  |
 | ---------------------------------- | -------- | -------- | ----------- | ----------------------- | ---------- |
 | [Run with HF Transformers + IPEX ](https://github.com/intel/document-level-sentiment-analysis/blob/main/docs/fine-tuning/single-node-trainer.md)   | HF Model | Single   | Trainer     | PyTorch + IPEX          | FP32, BF16 |
 | [Run with Stock Pytorch](https://github.com/intel/document-level-sentiment-analysis/blob/main/docs/fine-tuning/single-node-stock-pytorch.md) | HF Model  | Single   | Non-trainer | PyTorch                 | FP32       |
 | [Run with IPEX (Single Instance)](https://github.com/intel/document-level-sentiment-analysis/blob/main/docs/fine-tuning/single-node-ipex.md) | HF Model  | Single   | Non-trainer | PyTorch + IPEX          | FP32,BF16  |
 | [Run with IPEX (Multi Instance)](https://github.com/intel/document-level-sentiment-analysis/blob/main/docs/fine-tuning/multi-nodes-ipex.md) | HF Model  | Multiple | Non-trainer | PyTorch + IPEX          | FP32,BF16  |
+
 
 ## Recommended Hardware 
 The hardware below is recommended for use with this reference implementation. 
